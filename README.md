@@ -4,10 +4,10 @@
 ##### Module that need to be created:
 | Module                    | Parent Module | Start Date | Finish Date | Notes |
 |:-------------------------:|:-------------:|:----------:|:-----------:|:-----:|
-| MIPS                      | N/A           | | | Top Module |
+| MIPS                      | N/A           | 12/21/2018 | | Top Module |
 | Instruction Cache         | MIPS          | | | 32kB, read-only, direct mapped, 32B block size, 1 cycle access latency and 10 cycle miss penalty |
 | Instruction Fetch Module  | MIPS          | | | |
-| Decode Queue              | MIPS          | | | 8-entry FIFO |
+| Decode Queue              | MIPS          | 12/21/2018 | | 8-entry FIFO |
 | Instruction Decode Module | MIPS          | | | |
 | Rename Queue              | MIPS          | | | 8-entry FIFO |
 | F-RAT                     | MIPS          | | | 35 architectural registers |
@@ -17,7 +17,7 @@
 | Issue Queue               | MIPS          | | | 16-entry out of order |
 | Arbitration Tree          | Issue Queue   | | | |
 | Issue Queue Entry         | Issue Queue   | | | |
-| Physical Register File    | MIPS          | | | 64 physical registers |
+| Physical Register File    | MIPS          | 12/21/2018 | | 64 physical registers |
 | Execute Module (EXE)      | MIPS          | | | |
 | 32-bit ALU                | EXE           | | | |
 | Load Queue                | MIPS          | | | 16-entry out of order |
