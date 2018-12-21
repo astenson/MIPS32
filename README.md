@@ -5,8 +5,8 @@
 | Module                    | Parent Module | Start Date | Finish Date | Notes |
 |:-------------------------:|:-------------:|:----------:|:-----------:|:-----:|
 | MIPS                      | N/A           | | | Top Module |
-| Instruction Cache         | MIPS          | | | See 401 Project 1 for |
-| Instruction Fetch Module  | MIPS          | | | 32kB, read-only, direct mapped, 32B block size, 1 cycle access latency and 10 cycle miss penalty |
+| Instruction Cache         | MIPS          | | | 32kB, read-only, direct mapped, 32B block size, 1 cycle access latency and 10 cycle miss penalty |
+| Instruction Fetch Module  | MIPS          | | | |
 | Decode Queue              | MIPS          | | | 8-entry FIFO |
 | Instruction Decode Module | MIPS          | | | |
 | Rename Queue              | MIPS          | | | 8-entry FIFO |
