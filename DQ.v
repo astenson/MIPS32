@@ -1,7 +1,7 @@
 /*******************************************************************************
 Project: 32-bit Out of Order MIPS Processor
 Author: Adam Stenson
-Module: Decode Queue, 8-entry FIFI
+Module: Decode Queue, 8-entry FIFO
 Last Updated: December 21, 2018
 *******************************************************************************/
 
