@@ -17,7 +17,7 @@
 | Issue Queue               | MIPS          | | | 16-entry out of order |
 | Arbitration Tree          | Issue Queue   | | | |
 | Issue Queue Entry         | Issue Queue   | | | |
-| Physical Register File    | MIPS          | 12/21/2018 | | 64 physical registers |
+| Physical Register File    | MIPS          | | | 64 physical registers |
 | Execute Module (EXE)      | MIPS          | | | |
 | 32-bit ALU                | EXE           | | | |
 | Load Queue                | MIPS          | | | 16-entry out of order |
@@ -25,3 +25,4 @@
 | Data Cache                | MIPS          | | | 32kB, write-back, write-allocate, 2-way, 32B block size, 1 cycle access latency with 10 cycle miss penalty |
 | Reorder Buffer            | MIPS          | | | 64-entry |
 | R-RAT                     | MIPS          | | | |
+| Hybrid Branch Predictor   | MIPS          | | | |

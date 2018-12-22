@@ -6,27 +6,24 @@ Last Updated: December 21, 2018
 *******************************************************************************/
 
 module DQ(
-  input CLK,
-  input RESET,
-  input SYS,
-  input STALL_IN_IF,
-  input STALL_IN_ID,
-  input [31:0] Instr_IN,
-  input [31:0] Instr_PC_IN,
-  output reg [31:0] Instr_OUT,
-  output reg [31:0] Instr_PC_OUT,
-  output wire STALL_OUT_IF,
-  output wire STALL_OUT_ID
+  input CLK,                      //clock signal
+  input RESET,                    //reset signal, means that the queue needs to be flushed
+  input SYS,                      //syscall, means that the queue needs to be flushed
+  input STALL_IN_IF,              //IF is telling DQ to stall
+  input STALL_IN_ID,              //ID is telling DQ to stall
+  input [31:0] Instr_IN,          //instruction passed from IF
+  input [31:0] Instr_PC_IN,       //instruction PC passed from IF
+  output reg [31:0] Instr_OUT,    //instruction passed to ID
+  output reg [31:0] Instr_PC_OUT, //instruction PC passed to ID
+  output wire STALL_OUT_IF,       //signal to IF to stall
+  output wire STALL_OUT_ID        //signal to ID to stall
   );
 
-  reg flush;
-  or(RESET, SYS);
+  reg flush;      //internal flag if the queue needs to be flushed
+  or(RESET, SYS); //if any external flush flags are raised, then flush
 
   //Stall the IF stage if the Decode Queue is full
   and(STALL_OUT_IF, reg_fifo[0][64], reg_fifo[1][64], reg_fifo[2][64], reg_fifo[3][64], reg_fifo[4][64], reg_fifo[5][64], reg_fifo[6][64], reg_fifo[7][64]);
-
-  reg write_flag;
-  nor(write_flag, full, STALL_IN);
 
   //Stall the ID stage if the Decode Queue is empty
   nor(STALL_OUT_ID, reg_fifo[0][64], reg_fifo[1][64], reg_fifo[2][64], reg_fifo[3][64], reg_fifo[4][64], reg_fifo[5][64], reg_fifo[6][64], reg_fifo[7][64]);
@@ -39,7 +36,7 @@ module DQ(
   reg write_output;
   nor(write_output, STALL_OUT_ID, STALL_IN_ID);
 
-  reg [2:0] head_ptr;
+  reg [2:0] head_ptr; 
   reg [2:0] tail_ptr;
   reg [64:0] reg_fifo [7:0];
   //bit 64: is the entry full or empty
