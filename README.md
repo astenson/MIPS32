@@ -9,14 +9,17 @@
 | Instruction Fetch Module  | MIPS          | | | |
 | Decode Queue              | MIPS          | 12/21/2018 | | 8-entry FIFO |
 | Instruction Decode Module | MIPS          | | | |
-| Rename Queue              | MIPS          | | | 8-entry FIFO |
-| F-RAT                     | MIPS          | | | 35 architectural registers |
+| Rename Queue              | MIPS          | 12/22/2018 | | 8-entry FIFO |
+| F-RAT                     | MIPS          | 12/23/2018 | | 35 architectural registers |
 | 64-bit Free List          | MIPS          | | | |
 | 16-bit Free List          | Issue Queue   | | | |
 | Busy Bits                 | MIPS          | | | |
 | Issue Queue               | MIPS          | | | 16-entry out of order |
-| Arbitration Tree          | Issue Queue   | | | |
+| Arbitration Tree          | Issue Queue   | 12/22/2018 | 12/22/2018 | |
+| Arbiter                   | Arbitration Tree | 12/22/2018 | 12/22/2018 | |
+| Base Arbiter              | Arbitration Tree | 12/22/2018 | 12/22/2018 | |
 | Issue Queue Entry         | Issue Queue   | | | |
+| Comparator                | IQ Entry      | 12/22/2018 | | |
 | Physical Register File    | MIPS          | | | 64 physical registers |
 | Execute Module (EXE)      | MIPS          | | | |
 | 32-bit ALU                | EXE           | | | |
