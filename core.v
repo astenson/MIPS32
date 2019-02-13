@@ -1,13 +1,15 @@
 /*******************************************************************************
 Project: 32-bit Out of Order MIPS Processor
 Author: Adam Stenson
-Module: MIPS, overall pipeline connecting individual component blocks
-Last Updated: December 21, 2018
+Module: core, connects all components needed for a single processing core
+Last Updated: February 13, 2019
 *******************************************************************************/
 
 `include "DQ.v"
 `include "ID.v"
 `include "RQ.v"
+`include "FRAT.v"
+`include "busybits.v"
 
 module MIPS(
     input CLK,
@@ -76,7 +78,7 @@ module MIPS(
     //wires out of RQ
     wire [31:0] Instr_RQIQ;
     wire [31:0] Instr_PC_RQIQ;
-    wire [5:0] opcode_RQIQ;
+    wire [5:0] opcode_RQIQ; //also goes to the FRAT
     wire [4:0] rs_RQFRAT;
     wire [4:0] rt_RQFRAT;
     wire [4:0] rd_RQFRAT;
@@ -117,6 +119,49 @@ module MIPS(
         .STALL_OUT_IQ(STALL_RQIQ)
         );
 
+    //wires out of the FRAT
+    wire [5:0] rs_FRATBB;
+    wire [5:0] rt_FRATBB;
+    wire [5:0] rd_FRATIQ;
+    FRAT FRAT(
+        .CLK(CLK),
+        .RESET(RESET),
+        .SYS(SYS),
+        .STALL_IN_RQ(STALL_RQIQ),
+        .STALL_IN_IQ(STALL_IQRQ),
+        .rs_IN(rs_RQFRAT),
+        .rt_IN(rt_RQFRAT),
+        .rd_IN(rd_RQFRAT),
+        .opcode_IN(opcode_RQIQ),
+        .RegID_IN_FreeList(RegID_FreeListFRAT),
+        .backup_IN_RRAT(backup_RRATFRAT),
+        .rs_OUT(rs_FRATBB),
+        .rt_OUT(rt_FRATBB),
+        .rd_OUT(rd_FRATIQ),
+        .STALL_OUT_FreeList(STALL_FRATFreeList),
+        .Shift_FreeList(Shift_FRATFreeList)
+        );
+
+    //Wires out of the busybits
+    wire [5:0] rs_BBIQ;
+    wire [5:0] rt_BBIQ;
+    wire rs_busy_BBIQ;
+    wire rt_busy_BBIQ;
+    busybits busybits(
+        .RESET(RESET),
+        .SYS(SYS),
+        .rs_IN(rs_FRATBB),
+        .rt_IN(rt_FRATBB),
+        .RegID_IN_IQ(RegID_IQBB),
+        .enable_IN_IQ(enable_IQBB),
+        .RegID_IN_RRAT(RegID_RRATBB),
+        .enable_IN_RRAT(enable_RRATBB),
+        .rs_OUT(rs_BBIQ),
+        .rt_OUT(rt_BBIQ),
+        .rs_busy(rs_busy_BBIQ),
+        .rt_busy(rt_busy_BBIQ)
+        );
+    //free list here
     //wires out of IQ
-    wire STALL_IQRQ;
+    wire STALL_IQRQ; //also used for the FRAT
 endmodule
