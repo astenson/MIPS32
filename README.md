@@ -1,10 +1,10 @@
 # MIPS32
-## Winter Break 2018 Project - 32-bit MIPS Out of Order Processor
+## Personal Project - 32-bit MIPS Out of Order Processor
 
 ##### Module that need to be created:
 | Module                    | Parent Module | Start Date | Finish Date | Notes |
 |:-------------------------:|:-------------:|:----------:|:-----------:|:-----:|
-| MIPS                      | N/A           | 12/21/2018 | | Top Module |
+| core                      | N/A           | 12/21/2018 | | 1 "Core" |
 | Instruction Cache         | MIPS          | | | 32kB, read-only, direct mapped, 32B block size, 1 cycle access latency and 10 cycle miss penalty |
 | Instruction Fetch Module  | MIPS          | | | |
 | Decode Queue              | MIPS          | 12/21/2018 | | 8-entry FIFO |
@@ -13,7 +13,7 @@
 | F-RAT                     | MIPS          | 12/23/2018 | | 35 architectural registers |
 | 64-bit Free List          | MIPS          | | | |
 | 16-bit Free List          | Issue Queue   | | | |
-| Busy Bits                 | MIPS          | | | |
+| Busy Bits                 | MIPS          | 2/13/2019 | | |
 | Issue Queue               | MIPS          | | | 16-entry out of order |
 | Arbitration Tree          | Issue Queue   | 12/22/2018 | 12/22/2018 | |
 | Arbiter                   | Arbitration Tree | 12/22/2018 | 12/22/2018 | |
