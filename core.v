@@ -2,7 +2,7 @@
 Project: 32-bit Out of Order MIPS Processor
 Author: Adam Stenson
 Module: core, connects all components needed for a single processing core
-Last Updated: February 13, 2019
+Last Updated: March 22, 2022
 *******************************************************************************/
 
 `include "DQ.v"
@@ -28,17 +28,17 @@ module MIPS(
     wire STALL_DQID;           //signal from DQ telling ID to stall
     //Decode Queue (DQ)
     DQ DQ(
-        .CLK(CLK),
-        .RESET(RESET),
-        .SYS(SYS),
-        .STALL_IN_IF(STALL_IFDQ),
-        .STALL_IN_ID(STALL_IDDQ),
-        .Instr_IN(Instr_IFDQ),
-        .Instr_PC_IN(Instr_PC_IFDQ),
-        .Instr_OUT(Instr_DQID),
-        .Instr_PC_OUT(Instr_PC_DQID),
-        .STALL_OUT_IF(STALL_DQIF),
-        .STALL_OUT_ID(STALL_DQID)
+        .CLK(CLK),                    //system clock
+        .RESET(RESET),                //reset flag from the system
+        .SYS(SYS),                    //logic flag from the system to flush the queue
+        .STALL_IN_IF(STALL_IFDQ),     //logic signal if instruction fetch is stalled
+        .STALL_IN_ID(STALL_IDDQ),     //logic signal if instruction decode is stalled
+        .Instr_IN(Instr_IFDQ),        //input of the instuction PC, coming from instruction fetch
+        .Instr_PC_IN(Instr_PC_IFDQ),  //input of the instriction, coming from instruction fetch
+        .Instr_OUT(Instr_DQID),       //output of the instruction, headed to instruction decode
+        .Instr_PC_OUT(Instr_PC_DQID), //output of the PC of the struction, headed to instruction decode
+        .STALL_OUT_IF(STALL_DQIF),    //logic signal if the queue is stalled, headed to instruction fetch
+        .STALL_OUT_ID(STALL_DQID)     //logic signal if the queue is stalled, headed to the instruction decode
         );
 
     //wires out of ID

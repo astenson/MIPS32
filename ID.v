@@ -18,11 +18,11 @@ module ID(
     output reg [4:0] rs_OUT,
     output reg [4:0] rt_OUT,
     output reg [4:0] rd_OUT,
-    output reg [4:0] shiftAmount_OUT,
-    output reg [5:0] funct_OUT,
-    output reg [15:0] immediate_OUT,
-    output reg [25:0] target_OUT,
-    output reg RegDst_OUT,
+    output reg [4:0] shiftAmount_OUT, //output signal, shift amount
+    output reg [5:0] funct_OUT,       //output signal, function code
+    output reg [15:0] immediate_OUT,  //output signal, immediate value
+    output reg [25:0] target_OUT,     //output signal, target value
+    output reg RegDst_OUT,            //
     output reg ALUSrc_OUT,
     output reg MemtoReg_OUT,
     output reg RegWrite_OUT,
